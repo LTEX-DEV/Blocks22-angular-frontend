@@ -1,0 +1,59 @@
+
+<div class="text-center ">
+    <form nz-form [formGroup]="form" (ngSubmit)="submitForm()" class="mx-auto" >
+
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="username" nzRequired>
+              <span>
+                username
+                <i nz-icon nz-tooltip nzTitle="What do you want other to call you" type="question-circle" theme="outline"></i>
+              </span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="14" nzRequired [nzXs]="24">
+              <input nz-input id="username" formControlName="username">
+              <nz-form-explain *ngIf="form.get('username').dirty && form.get('username').errors">Please input your username!</nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24">
+            <input nz-input formControlName="email" id="email">
+            <nz-form-explain *ngIf="form.get('email').dirty && form.get('email').errors">The input is not valid E-mail!</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24">
+            <input nz-input type="password" id="password" formControlName="password" >
+            <nz-form-explain *ngIf="form.get('password').dirty && form.get('password').errors">Please input your password!</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+       
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="role" nzRequired>Role</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="form.controls['role']">
+              
+               
+                  <nz-select formControlName="role" >
+                    <nz-option nzLabel="Client" nzValue="client"></nz-option>
+                    <nz-option nzLabel="Consultant" nzValue="consultant"></nz-option>
+                  </nz-select>
+                
+                
+              
+              <nz-form-explain *ngIf="form.get('role').dirty && form.get('role').errors">Please select your role!</nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+       
+      
+        <nz-form-item nz-row style="margin-bottom:8px;">
+          <nz-form-control [nzSpan]="14" [nzOffset]="6">
+            <button nz-button nzType="primary">Register</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+
+
+
+   

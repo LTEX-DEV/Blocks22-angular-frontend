@@ -1,0 +1,72 @@
+
+
+<div nz-row nzGutter="16">
+<div nz-col nzSm="4" nzMd="6" nzLg="8" nzXl="10" >
+    
+<canvas *ngIf="chartData" baseChart
+    [chartType]="chartType"
+    [datasets]="chartData"
+    [options]="options"
+    [colors]="colors"
+    
+    width="350px" 
+    height="350px"
+    
+    ></canvas> 
+
+</div>
+ <div nz-col nzSm="4" nzMd="6" nzLg="8" nzXl="10" *ngIf="(auth.User.role=='consultant') || (auth.User.role=='creator')" >
+
+
+  <!--  <canvas *ngIf="resultChartData" baseChart
+    [chartType]="chartType"
+    [datasets]="resultChartData"
+    [options]="resultChartOptions"
+    [colors]="colors"
+    
+    width="1000px" 
+    height="1000px"
+    
+    ></canvas> -->
+
+
+
+      <!--  <h4>Results</h4>
+        <nz-table
+          #smallTable
+          nzSize="small"
+          [nzData]="resultData.inputData" 
+          [nzPageSize]="22"
+          [nzScroll]="{ y: '350px' , x:'400px' }"
+          
+          >
+          <thead>
+            <tr >
+                    <th nzWidth="50px">No</th>
+                    <th nzWidth="250px">Title</th>
+                    <th nzWidth="250px">Answers</th>
+                    <th nzWidth="100px">Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of smallTable.data;let i=index" >
+              <td >{{i+1}}</td>
+              <td>{{resultData.labels[i]}}  </td>
+              <td>
+                <nz-tag  [nzColor]="(data[0]==1 ? 'green':'red')">{{(data[0]==1 ? 'YES':'NO')}}</nz-tag>
+                <nz-tag  [nzColor]="(data[1]==1 ? 'green':'red')">{{(data[1]==1 ? 'YES':'NO')}}</nz-tag>
+                <nz-tag  [nzColor]="(data[2]==1 ? 'green':'red')">{{(data[2]==1 ? 'YES':'NO')}}</nz-tag>
+              </td>
+              <td><button nz-button [ngStyle]="{'background-color':this.resultColors[i]}"></button></td>
+            </tr>
+          </tbody>
+        </nz-table> -->
+
+</div> 
+
+</div>
+
+
+
+
+

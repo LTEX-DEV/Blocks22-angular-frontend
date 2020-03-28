@@ -24,12 +24,21 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "src/styles.scss"
+              
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/chart.js/dist/Chart.min.js",
+              "./node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -54,11 +63,13 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Blocks22-angular:build"
+            "browserTarget": "Blocks22-angular:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
               "browserTarget": "Blocks22-angular:build:production"
+              
             }
           }
         },

@@ -1,0 +1,10 @@
+
+<nz-card  nzTitle="Chart" [nzExtra]="extraTemplate"    *ngFor="let data of chartDatas" >
+    <app-chart [inputData]="data.answers" *ngIf="data.answers" ></app-chart>
+    <ng-template #extraTemplate >
+    
+        <nz-tag [nzColor]="'#108ee9'">{{data.createdDate | date: 'medium'}}</nz-tag>
+      </ng-template>
+  </nz-card>
+  
+

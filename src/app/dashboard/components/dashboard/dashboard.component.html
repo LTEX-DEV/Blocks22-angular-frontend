@@ -1,0 +1,76 @@
+
+
+<nz-card nzType="inner" nzTitle="Action panel">
+
+    
+     
+    <div nz-row  >
+       <div nz-col  nzSm="4" nzMd="6" nzLg="8" nzXl="10" *ngIf="(auth.User.role=='creator' || auth.User.role=='consultant')">
+
+        <form nz-form class="login-form mx-auto" [formGroup]='form' [nzLayout]="'inline'" (ngSubmit)="assignCode()" >
+            <nz-form-item>
+                <nz-form-control>
+    <input type="text" nz-input placeholder="Email address"  formControlName="email" width="100%" >
+    <nz-form-explain *ngIf="form.get('email').dirty && form.get('email').errors">Please input email!</nz-form-explain>
+  </nz-form-control>
+
+</nz-form-item>
+        
+
+        
+
+<nz-form-item>
+
+  <nz-form-control>
+      <nz-input-group nzCompact>
+
+  <nz-input-number    [nzMin]="1" [nzMax]="10" [nzStep]="1" [nzPlaceHolder]="'count'" formControlName="codeCount" ></nz-input-number> 
+  <button nz-button nzType="primary">Assign</button>
+
+</nz-input-group >
+
+  <nz-form-explain *ngIf="form.get('codeCount').dirty && form.get('codeCount').errors">Please input valid amount!</nz-form-explain>
+  </nz-form-control>
+</nz-form-item>
+
+
+</form>
+
+
+</div>
+
+
+
+
+<div nz-col nzSm="4" nzMd="6" nzLg="8" nzXl="10">
+    <nz-form-item>
+  <nz-form-control>
+    <button   nz-button nzType="primary" *ngIf="(auth.User.role=='creator')" (click)="generateCodes()" >Generate New Codes</button> &nbsp;&nbsp;&nbsp;
+  </nz-form-control>
+</nz-form-item>
+      
+<nz-form-item>
+    <nz-form-control>
+  <nz-badge [nzCount]="codeCount"  [nzStyle]="{ backgroundColor: '#52c41a' }"><button nz-button nzType="primary" [disabled]="!codeCount" [routerLink]='["/addAssesment"]'>Do Assesment</button></nz-badge>
+</nz-form-control>
+</nz-form-item>
+
+   
+</div>
+
+
+     </div>
+   
+
+  </nz-card>
+
+ 
+  
+<br/>
+
+
+<app-clients></app-clients>
+
+ 
+
+  

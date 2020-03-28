@@ -1,0 +1,66 @@
+<nz-card nzType="inner" [nzTitle]="(auth.User.role=='creator' ? 'Consultants' : 'Clients')" *ngIf="(auth.User.role=='creator' || auth.User.role=='consultant')">
+
+  <nz-table #nestedTable [nzData]="tableData" [nzPageSize]="10" [nzScroll]="{ x:'800px' }">
+          <thead>
+            <tr>
+              <th  ></th>
+              <th >Username</th>
+              <th  nzCustomFilter> Email
+                  <nz-dropdown nzTrigger="click" [nzClickHide]="false" #dropdown>
+                    <i nz-icon type="filter" theme="twotone" class="ant-table-filter-icon" [class.ant-table-filter-open]="dropdown.nzVisible" nz-dropdown></i>
+                    <div class="custom-filter-dropdown">
+                      <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue">
+                      <button nz-button [nzType]="'primary'" (click)="search()">Search</button>
+                    </div>
+                  </nz-dropdown>
+              </th>
+              <th >Codes</th>
+              <th >Assesesments</th>
+              <th *ngIf="(auth.User.role=='creator')" >Clients</th>
+              <th></th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <ng-template ngFor let-data [ngForOf]="nestedTable.data">
+              <tr>
+                <td [nzShowExpand]="!!data.clients.length" [(nzExpand)]="data.expand"></td>
+                <td>{{data.username}}</td>
+                <td>{{data.email}}</td>
+                <td><nz-tag [nzColor]="'#f50'">{{data.codes.length}}</nz-tag></td>
+                <td><nz-tag [nzColor]="'#2db7f5'">{{data.assesmentCount}}</nz-tag></td>
+                <td *ngIf="(auth.User.role=='creator')"><nz-tag  [nzColor]="'#87d068'">{{data.clients.length}}</nz-tag></td>
+                <td><a [routerLink]="['/assesments',data._id]">Assesments</a></td>
+                
+              </tr>
+              <tr [nzExpand]="data.expand" *ngIf="data.clients.length">
+                <td></td>
+                <td colspan="7">
+                  <nz-table #innerTable [nzData]="data.clients" nzSize="middle" [nzShowPagination]="false" >
+                    <thead>
+                      <tr>
+                              <th>Username</th>
+                              <th>Email</th>
+                              <th>Codes</th>
+                              <th>Assetments</th>
+                              <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let data of innerTable.data">
+                              <td>{{data.username}}</td>
+                              <td>{{data.email}}</td>
+                              <td><nz-tag [nzColor]="'#2db7f5'">{{data.codes.length}}</nz-tag></td>
+                              <td ><nz-tag [nzColor]="'#2db7f5'">{{data.assesmentCount}}</nz-tag></td>
+                              <td><a [routerLink]="['/assesments',data._id]">Assesments</a></td>
+                       
+                      </tr>
+                    </tbody>
+                  </nz-table>
+                </td>
+              </tr>
+            </ng-template>
+          </tbody>
+        </nz-table>
+  
+      </nz-card>

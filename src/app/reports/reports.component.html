@@ -1,0 +1,67 @@
+
+
+  <nz-table nzSize="small"  nzBordered [nzNoResult]="' '" >
+    <thead >
+    <tr >
+      <th colspan="2"><h5>My Info</h5></th>
+    </tr>
+    </thead>
+    <tbody *ngIf="me">
+        <tr *ngIf="(me.role=='client') || (me.role=='consultant')">
+            <td ><strong>{{ me.role=="client" ? 'Consultant' : 'Benri' }}</strong></td>
+            <td><nz-tag [nzColor]="'#2db7f5'">{{me.consultantEmail  }}</nz-tag></td>
+            
+            
+        </tr>
+        <tr>
+            <td ><strong>Code Available</strong></td>
+            <td><nz-tag [nzColor]="'#2db7f5'">{{me.codes.length  }}</nz-tag></td>
+            
+            
+        </tr>
+        <tr *ngIf="me.role !== 'client'">
+            <td ><strong>Code Sold</strong></td>
+            <td><nz-tag [nzColor]="'#2db7f5'">{{me.soldCount}}</nz-tag></td>
+            
+            
+        </tr>
+        <tr>
+            <td ><strong>Assesments</strong></td>
+            <td><nz-tag [nzColor]="'#2db7f5'">{{me.assesmentCount}}</nz-tag></td>
+            
+            
+        </tr>
+       
+        <tr>
+            <td ><strong>Code Total</strong></td>
+            <td><nz-tag [nzColor]="'#2db7f5'">{{me.codes.length + me.soldCount + me.assesmentCount }}</nz-tag></td>
+            
+            
+        </tr>
+       <tr *ngIf="me.role !== 'client'">
+            <td If="(me.role=='client') || (me.role=='consultant')"><strong>{{me.role=="creator" ? "Consultants" : "Clients"}}</strong></td>
+            <td><nz-tag [nzColor]="'#2db7f5'">{{me.clients.length}}</nz-tag></td>
+            
+            
+        </tr>
+       
+     
+    </tbody>
+  </nz-table>
+
+  <br/>
+
+<nz-tabset *ngIf="me.role !== 'client'">
+  <nz-tab  [nzTitle]="titleTemplate">
+    <ng-template #titleTemplate>
+      <i nz-icon [type]="'team'"></i>Clients
+    </ng-template>
+    <app-clients></app-clients>
+  </nz-tab>
+  <nz-tab  [nzTitle]="titleTemplate2">
+    <ng-template #titleTemplate2>
+      <i nz-icon [type]="'profile'"></i>History
+    </ng-template>
+    <app-history></app-history>
+  </nz-tab>
+</nz-tabset>

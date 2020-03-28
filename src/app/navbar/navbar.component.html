@@ -1,0 +1,63 @@
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+      Brand
+    </a>
+  
+    <button class="navbar-toggler" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+  
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Item 1</a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link" href="#">Item 2</a>
+        </li>
+      </ul>
+    </div>
+  </nav> -->
+
+
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+ 
+  <h5 class="my-0 mr-md-auto font-weight-normal">  <a class="p-2 text-dark " [routerLink]="['/']" ><img src="../../assets/22blocks-logo.jpg" alt="22blocks logo" width="32" height="32"> 22Blocks</a></h5>
+  <nav class="my-2 my-md-0 mr-md-3 ">
+
+
+      
+        
+
+
+      <div *ngIf="!(auth.isLoggedIn | async)">
+          <a class="p-2 "  [routerLink]="['/login']">Login</a>
+          <a class="p-2 "  [routerLink]="['/signup']">Sign up</a>
+
+      </div>
+
+
+      <div *ngIf="auth.isLoggedIn | async">
+          
+          
+              <nz-badge [nzCount]="notificationCount" style="margin-right: 24px;" nz-dropdown>
+                 <button nz-button nzShape="circle" (click)="createComponentModal()"> <nz-avatar  nzIcon="anticon"  [nzShape]="'square'"  nzSrc="https://cdn.iconscout.com/icon/premium/png-256-thumb/notification-263-1134343.png"></nz-avatar></button>
+                </nz-badge>
+              
+             
+
+          <nz-tag [nzColor]="'#2db7f5'"  > {{auth.User.username.toUpperCase()}}</nz-tag>
+            <a class="p-2 "  [routerLink]="['/dashboard']">Home</a>
+            
+            <a class="p-2 "  [routerLink]="['/assesments']">Assestments</a>
+            <a class="p-2 "  [routerLink]="['/reports']">Reports</a>
+            <a class="p-2 " [routerLink]="['#']" (click)="logout()" >Logout</a>
+          
+
+      </div>
+     
+  
+  </nav> 
+</div>

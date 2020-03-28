@@ -1,0 +1,70 @@
+
+
+   <!-- <nz-steps [nzCurrent]="currentIndex" [nzDirection]="'horizontal'" >
+        <nz-step *ngFor="let q of questions;"></nz-step>
+        
+      </nz-steps> -->
+
+
+
+    <div class="steps-content" >
+        <nz-divider  [nzDashed]="true" [nzText]="title"></nz-divider>
+      <ng-template #title>
+          <nz-tag [nzColor]="'#f50'">{{questions[currentIndex].title}}</nz-tag> 
+      </ng-template>
+        <ul style="list-style: none;" class="row">
+            
+            <li class="col-md-8" ><label class="control-label justify-content-between" >{{questions[currentIndex].subQuestions[0]}}</label></li>
+  
+            <li class="col-md-2">
+                <nz-radio-group [(ngModel)]="currentAnswer[0]" [nzButtonStyle]="'solid'" >
+                    <label nz-radio-button nzValue="1">YES</label>
+                    <label nz-radio-button nzValue="0">NO</label>
+                  </nz-radio-group>
+  
+            </li>
+  
+          </ul>
+          <ul style="list-style: none;" class="row">
+              <li class="col-md-8" ><label class="control-label justify-content-between" >{{questions[currentIndex].subQuestions[1]}}</label></li>
+    
+              <li class="col-md-2">
+                  <nz-radio-group [(ngModel)]="currentAnswer[1]" [nzButtonStyle]="'solid'" >
+                      <label nz-radio-button nzValue="1">YES</label>
+                      <label nz-radio-button nzValue="0">NO</label>
+                    </nz-radio-group>
+    
+              </li>
+    
+            </ul>
+            <ul style="list-style: none;" class="row">
+                <li class="col-md-8" ><label class="control-label justify-content-between" >{{questions[currentIndex].subQuestions[2]}}</label></li>
+      
+                <li class="col-md-2">
+                    <nz-radio-group [(ngModel)]="currentAnswer[2]" [nzButtonStyle]="'solid'" >
+                        <label nz-radio-button nzValue="1">YES</label>
+                        <label nz-radio-button nzValue="0">NO</label>
+                      </nz-radio-group>
+      
+                </li>
+      
+              </ul>
+          
+        
+    </div>
+  
+    <div class="steps-action">
+      <button nz-button nzType="default" (click)="pre()" *ngIf="currentIndex > 0">
+        <span>Previous</span>
+      </button>
+      <button nz-button nzType="default" (click)="next()" *ngIf="currentIndex < 21">
+        <span>Next</span>
+      </button>
+      <button nz-button nzType="primary" (click)="done()" *ngIf="currentIndex === 21">
+        <span>Done</span>
+      </button>
+    </div>
+
+
+
+  

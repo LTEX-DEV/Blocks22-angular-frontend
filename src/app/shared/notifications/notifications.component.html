@@ -1,0 +1,17 @@
+<nz-table #nzTable [nzData]="notifications" [nzPageSize]="5" >
+    
+    <tbody>
+      <ng-template ngFor let-data [ngForOf]="nzTable.data">
+        
+        <tr *ngIf="(data.action=='sold')">
+          
+          <td colspan="4">  <nz-tag [nzColor]="'red'"> {{data.action}}</nz-tag> From: <span style="color:#2db7f5">{{data.from.email}}</span> Code : <span style="color:#2db7f5">{{data.codeCount}}</span>  To : <span style="color:orange">{{data.to.email}}</span> on <span style="color:#108ee9">{{data.actionDate | date: 'medium'}}</span> . 
+          </td>
+        </tr>
+        <tr *ngIf="(data.action=='assesment')">
+          <td colspan="4"> <nz-tag [nzColor]="'cyan'">{{data.action}} </nz-tag> by  <span style="color:#2db7f5">{{data.from.email}}</span> on Date: <span style="color:#108ee9">{{data.actionDate | date: 'medium'}}</span> , CODE: <span style="color:orange">{{data.code}}</span> . 
+          </td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </nz-table>
